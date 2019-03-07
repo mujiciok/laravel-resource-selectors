@@ -4,6 +4,7 @@
 [![Build Status](https://img.shields.io/travis/mujiciok/resource-selectors/master.svg?style=flat-square)](https://travis-ci.org/mujiciok/laravel-resource-selectors)
 [![Quality Score](https://img.shields.io/scrutinizer/g/mujiciok/resource-selectors.svg?style=flat-square)](https://scrutinizer-ci.com/g/mujiciok/laravel-resource-selectors)
 [![Total Downloads](https://img.shields.io/packagist/dt/mujiciok/resource-selectors.svg?style=flat-square)](https://packagist.org/packages/mujiciok/laravel-resource-selectors)
+[![License](https://img.shields.io/packagist/l/mujiciok/resource-selectors.svg?style=flat-square)](https://packagist.org/packages/mujiciok/laravel-resource-selectors)
 
 Laravel Package for extended resource classes, with selectors.
 
@@ -16,7 +17,61 @@ composer require mujiciok/laravel-resource-selectors
 ```
 
 ## Usage
+### Artisan commands
+```bash
+// create UserResource
+php artisan make:resource-selectors User
 
+// create UserCollection
+php artisan make:resource-selectors -c User 
+```
+
+### Resources created
+``` php
+class UserCollection extends ResourceCollectionExtended
+{
+    /**
+     * Transform the resource collection into an array.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    public function toArray($request)
+    {
+        // initially created as default Laravel resource
+        // return parent::toArray($request);
+
+        return [
+            'data' => UserResource::collection($this->collection),
+        ];
+    }
+}
+
+class UserResource extends ResourceExtended
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    public function toArray($request)
+    {
+        // initially attributes array is empty
+        // return $this->getResource([
+        //     //
+        // ]);
+        
+        return $this->getResource([
+            'id'    => $this->id,
+            'name'  => $this->name,
+            'email' => $this->email,
+        ]);
+    }
+}
+```
+
+### Controller usage
 ``` php
 class UserController extends Controller
 {
@@ -46,12 +101,7 @@ class UserController extends Controller
         return (new UserCollection($users))->filters(['except' => ['email'], 'only' => 'id,email,name']);
     }
 }
-
 ```
-
-### Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
 ### Security
 
