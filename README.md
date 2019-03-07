@@ -5,35 +5,53 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/mujiciok/resource-selectors.svg?style=flat-square)](https://scrutinizer-ci.com/g/mujiciok/resource-selectors)
 [![Total Downloads](https://img.shields.io/packagist/dt/mujiciok/resource-selectors.svg?style=flat-square)](https://packagist.org/packages/mujiciok/resource-selectors)
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+Laravel Package for extended resource classes, with selectors.
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require mujiciok/resource-selectors
+composer require mujiciok/laravel-resource-selectors
 ```
 
 ## Usage
 
 ``` php
-// Usage description here
-```
+class UserController extends Controller
+{
+    public function index()
+    {
+        $users = User::all();
 
-### Testing
+        // standart Laravel Resource
+        return new UserCollection($users);
 
-``` bash
-composer test
+        // ONLY usage
+        return (new UserCollection($users))->only('id,name');
+        // or
+        return (new UserCollection($users))->only(['id', 'name']);
+
+        // EXCEPT usage
+        return (new UserCollection($users))->except('id');
+        // or
+        return (new UserCollection($users))->except(['id']);
+
+        // FILTERS usage
+        return (new UserCollection($users))->filters(['only' => 'id,email']);
+        return (new UserCollection($users))->filters(['except' => 'email']);
+        
+        // redundant, but available :)
+        return (new UserCollection($users))->only(['id', 'name'])->except('name');
+        return (new UserCollection($users))->filters(['except' => ['email'], 'only' => 'id,email,name']);
+    }
+}
+
 ```
 
 ### Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ### Security
 
