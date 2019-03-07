@@ -1,4 +1,4 @@
-# Very short description of the package
+# Laravel resource selectors
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/mujiciok/resource-selectors.svg?style=flat-square)](https://packagist.org/packages/mujiciok/resource-selectors)
 [![Build Status](https://img.shields.io/travis/mujiciok/resource-selectors/master.svg?style=flat-square)](https://travis-ci.org/mujiciok/resource-selectors)
