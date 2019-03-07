@@ -1,0 +1,61 @@
+{
+    "name": "mujiciok/laravel-resource-selectors",
+    "description": "Additional selectors for Laravel resources",
+    "keywords": [
+        "mujiciok",
+        "laravel-resource-selectors"
+    ],
+    "homepage": "https://github.com/mujiciok/laravel-resource-selectors",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Mircea Cojocaru",
+            "email": "mirceacojocaru90@gmail.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/mujiciok/laravel-resource-selectors"
+        }
+    ],
+    "require": {
+        "php": "^7.0",
+        "illuminate/support": "^5.5"
+    },
+    "require-dev": {
+        "orchestra/testbench": "3.7.*",
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mujiciok\\ResourceSelectors\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Mujiciok\\ResourceSelectors\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Mujiciok\\ResourceSelectors\\ResourceSelectorsServiceProvider"
+            ],
+            "aliases": {
+                "ResourceSelectors": "Mujiciok\\ResourceSelectors\\ResourceSelectorsFacade"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
