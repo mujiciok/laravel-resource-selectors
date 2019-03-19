@@ -6,7 +6,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/mujiciok/resource-selectors.svg?style=flat-square)](https://packagist.org/packages/mujiciok/laravel-resource-selectors)
 [![License](https://img.shields.io/packagist/l/mujiciok/resource-selectors.svg?style=flat-square)](https://packagist.org/packages/mujiciok/laravel-resource-selectors)
 
-Laravel Package for extended resource classes, with selectors.
+Laravel Package for resource classes (collections and single resources) with selectors (only, except, filters).
 
 ## Installation
 
@@ -99,6 +99,20 @@ class UserController extends Controller
         // redundant, but available :)
         return (new UserCollection($users))->only(['id', 'name'])->except('name');
         return (new UserCollection($users))->filters(['except' => ['email'], 'only' => 'id,email,name']);
+    }
+    
+    public function show()
+    {
+        $user = User::find(1);
+
+        // standart Laravel Resource
+        return new UserResource($user);
+
+        // same usage as presented above
+        return (new UserResource($user))->only('id,name');
+        return (new UserResource($user))->except(['id', 'name']);
+        return (new UserResource($user))->filters(['except' => 'email', 'only' => ['id', 'email', 'name']]);
+        // etc.
     }
 }
 ```

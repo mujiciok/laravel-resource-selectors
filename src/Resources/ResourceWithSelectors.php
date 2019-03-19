@@ -4,8 +4,10 @@ namespace Mujiciok\ResourceSelectors\Resources;
 
 use Illuminate\Http\Resources\Json\Resource;
 
-class ResourceWithSelectors extends Resource
+class ResourceWithSelectors extends Resource implements ResourceWithSelectorsInterface
 {
+    use ResourceWithSelectorsTrait;
+
     /**
      * List of attributes to be shown
      *
@@ -20,7 +22,6 @@ class ResourceWithSelectors extends Resource
      */
     protected $showExcept;
 
-
     public function __construct($resource)
     {
         $request = request()->request;
@@ -29,6 +30,43 @@ class ResourceWithSelectors extends Resource
         $this->showExcept = $request->get(ResourceCollectionWithSelectors::FILTER_EXCEPT);
 
         parent::__construct($resource);
+    }
+
+    /**
+     * @param array $filters
+     * @return ResourceWithSelectors
+     */
+    public function filters(array $filters = []) : ResourceWithSelectors
+    {
+        foreach (ResourceCollectionWithSelectors::FILTERS as $filter) {
+            if (isset($filters[$filter])) {
+                $this->addFilters($filters, $filter);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param array $only
+     * @return ResourceWithSelectors
+     */
+    public function only(array $only = []) : ResourceWithSelectors
+    {
+        $this->showOnly = $this->formatAttributes($only);
+
+        return $this;
+    }
+
+    /**
+     * @param array $except
+     * @return ResourceWithSelectors
+     */
+    public function except(array $except = []) : ResourceWithSelectors
+    {
+        $this->showExcept = $this->formatAttributes($except);
+
+        return $this;
     }
 
     /**
