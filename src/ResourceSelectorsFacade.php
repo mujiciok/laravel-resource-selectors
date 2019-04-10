@@ -16,6 +16,6 @@ class ResourceSelectorsFacade extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'resource-selectors';
+        return 'laravel-resource-selectors';
     }
 }

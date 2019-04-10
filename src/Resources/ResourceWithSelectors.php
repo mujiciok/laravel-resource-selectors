@@ -26,8 +26,10 @@ class ResourceWithSelectors extends Resource implements ResourceWithSelectorsInt
     {
         $request = request()->request;
 
-        $this->showOnly   = $request->get(ResourceCollectionWithSelectors::FILTER_ONLY);
-        $this->showExcept = $request->get(ResourceCollectionWithSelectors::FILTER_EXCEPT);
+        $collectionClassName = class_basename($resource) . 'Collection';
+
+        $this->showOnly   = $request->get($collectionClassName . '_' . ResourceCollectionWithSelectors::FILTER_ONLY);
+        $this->showExcept = $request->get($collectionClassName . '_' . ResourceCollectionWithSelectors::FILTER_EXCEPT);
 
         parent::__construct($resource);
     }

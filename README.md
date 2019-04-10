@@ -1,10 +1,10 @@
 # Laravel resource selectors
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/mujiciok/resource-selectors.svg?style=flat-square)](https://packagist.org/packages/mujiciok/laravel-resource-selectors)
-[![Build Status](https://img.shields.io/travis/mujiciok/resource-selectors/master.svg?style=flat-square)](https://travis-ci.org/mujiciok/laravel-resource-selectors)
-[![Quality Score](https://img.shields.io/scrutinizer/g/mujiciok/resource-selectors.svg?style=flat-square)](https://scrutinizer-ci.com/g/mujiciok/laravel-resource-selectors)
-[![Total Downloads](https://img.shields.io/packagist/dt/mujiciok/resource-selectors.svg?style=flat-square)](https://packagist.org/packages/mujiciok/laravel-resource-selectors)
-[![License](https://img.shields.io/packagist/l/mujiciok/resource-selectors.svg?style=flat-square)](https://packagist.org/packages/mujiciok/laravel-resource-selectors)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/mujiciok/laravel-resource-selectors.svg?style=flat-square)](https://packagist.org/packages/mujiciok/laravel-resource-selectors)
+[![Build Status](https://img.shields.io/travis/mujiciok/laravel-resource-selectors/master.svg?style=flat-square)](https://travis-ci.org/mujiciok/laravel-resource-selectors)
+[![Quality Score](https://img.shields.io/scrutinizer/g/mujiciok/laravel-resource-selectors.svg?style=flat-square)](https://scrutinizer-ci.com/g/mujiciok/laravel-resource-selectors)
+[![Total Downloads](https://img.shields.io/packagist/dt/mujiciok/laravel-resource-selectors.svg?style=flat-square)](https://packagist.org/packages/mujiciok/laravel-resource-selectors)
+[![License](https://img.shields.io/packagist/l/mujiciok/laravel-resource-selectors.svg?style=flat-square)](https://packagist.org/packages/mujiciok/laravel-resource-selectors)
 
 Laravel Package for resource classes (collections and single resources) with selectors (only, except, filters).
 

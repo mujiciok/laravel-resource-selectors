@@ -29,7 +29,9 @@ class ResourceCollectionWithSelectors extends ResourceCollection implements Reso
      */
     public function only(array $only = []) : ResourceCollectionWithSelectors
     {
-        request()->request->add([ResourceWithSelectorsInterface::FILTER_ONLY => $this->formatAttributes($only)]);
+        $requestAttribute = class_basename($this) . '_' . ResourceWithSelectorsInterface::FILTER_ONLY;
+
+        request()->request->add([$requestAttribute => $this->formatAttributes($only)]);
 
         return $this;
     }
@@ -40,7 +42,9 @@ class ResourceCollectionWithSelectors extends ResourceCollection implements Reso
      */
     public function except(array $except = []) : ResourceCollectionWithSelectors
     {
-        request()->request->add([ResourceWithSelectorsInterface::FILTER_EXCEPT => $this->formatAttributes($except)]);
+        $requestAttribute = class_basename($this) . '_' . ResourceWithSelectorsInterface::FILTER_EXCEPT;
+
+        request()->request->add([$requestAttribute => $this->formatAttributes($except)]);
 
         return $this;
     }
